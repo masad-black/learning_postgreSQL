@@ -73,6 +73,7 @@ VALUES ('0', '1')
 -- array in postgres
 CREATE TABLE ARRAYDT(
 	names VARCHAR(25) ARRAY,
+	lastName VARCHAR(10)[],
 	even_nums INTEGER[],
 	grid INTEGER[3][3],
 	salaries DECIMAL[]	
@@ -94,6 +95,34 @@ INSERT INTO jsonDT
 VALUES ('{"name": "Toji", "age": 25, "clan": "zennin"}', '{"name": "itachi", "age": 21, "clan": "uchia"}')
 
 SELECT * FROM jsonDT
+
+-- enumerated data types in postgres
+CREATE TYPE mood as ENUM ('happy', 'sad', 'normal', 'excited')
+
+CREATE TABLE enumDT(
+	name VARCHAR(25),
+	personMood mood
+)
+
+INSERT INTO enumDT
+VALUES ('Toji', 'sad')
+
+
+INSERT INTO enumDT
+VALUES ('naruto', 'happy')
+
+-- if try to insert another value other then defined 
+-- then error will be raised
+INSERT INTO enumDT
+VALUES ('itachi', 'unKnown')
+
+-- enumerated is case sensitive sad !== SAD
+INSERT INTO enumDT
+		VALUES ('sasuke', 'SAD')
+
+SELECT * FROM enumDT
+
+
 
 
 
