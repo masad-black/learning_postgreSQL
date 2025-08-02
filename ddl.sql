@@ -106,8 +106,45 @@ VALUES (1);
 
 SELECT * FROM seven_table;
 
+/*
+5: DDL statment is ALTER TBALE: this is used to change the defination or structure of the existing table in the DB.
+this will not change the data inside the table.
+
+We can do alot of things with this ALTER TABLE statment like.
+	1: i can add new col into the table.
+	2: i can delete and existing col in the table.
+	3: rename a col.
+	4: rename table.
+	5: change the col CONSTRAINTS, and DEFAULT value
+*/
+
+CREATE TABLE for_modification(
+	first_col text,
+	second_col varchar(100) not null
+);
+
+-- adding new columns, by default null will be stored in new column.
+ALTER TABLE for_modification ADD COLUMN third_col int DEFAULT(999);
+ALTER TABLE for_modification ADD COLUMN fourth_col timestamp DEFAULT(CURRENT_TIMESTAMP);
+ALTER TABLE for_modification ADD COLUMN fifth_col timestamp array;
+
+-- removing some colums
+ALTER TABLE for_modification DROP first_col;
+ALTER TABLE for_modification DROP fifth_col;
+
+-- changing data types
+ALTER TABLE for_modification ALTER COLUMN third_col TYPE numeric(10, 2);
+
+-- renaming the col and table
+ALTER TABLE for_modification RENAME COLUMN second_col TO description;
+ALTER TABLE for_modification RENAME COLUMN third_col TO prices;
+
+ALTER TABLE for_modification RENAME TO simple;
 
 
+-- 5: DDL statment is DROP: this will remove the whole object form the DB along with data.
+DROP TABLE first_table;
+DROP TABLE second_table;
 
 
 
